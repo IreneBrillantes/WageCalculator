@@ -3,6 +3,10 @@ package com.example.wagecalculator;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.text.TextPaint;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,11 +24,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         calculate = findViewById(R.id.btnCalculate);
 
         calculate.setOnClickListener(this);
+
     }
+
     @Override
     public void onClick (View v){
         EditText workHours;
         TextView result, result2;
+
+
+
+
 
         workHours = findViewById(R.id.workHoursTxt);
         result = findViewById(R.id.resultTxt);
@@ -37,7 +47,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         double overtimeHours = 0;
         double totalHours = 0;
         double totalOvertimeWage = 0;
-        double totalWage = 0;
+        double totalWage = 0 ;
+
+
 
         inputHours = Double.parseDouble(workHours.getText().toString());
 
@@ -49,14 +61,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     totalHours = standardHours + overtimeHours;
                     totalWage = (standardHours * regularWage) + (overtimeHours * overtimeWage);
                     totalOvertimeWage = overtimeHours * overtimeWage;
-                    result.setText("Your Total Salary is "+ String.valueOf(totalWage)+ " pesos after "+ String.valueOf(totalHours)+ " Hours of work.");
-                    result2.setText("You have accumulated "+ String.valueOf(totalOvertimeWage)+ " pesos after "+ String.valueOf(overtimeHours)+ " hours in overtime!");
-            }
+
+                    result.setText("Your Total Salary is "+ "₱" + String.valueOf(totalWage)+ " \n after "+ String.valueOf(totalHours)+ " Hours of work.");
+                    result2.setText("You have accumulated "+ "₱" + String.valueOf(totalOvertimeWage)+ "  \n after "+ String.valueOf(overtimeHours)+ " hours in overtime!");
+
+
+                }
                 else {
                     totalWage = inputHours * regularWage;
-                    result.setText("Your Total Salary is "+ String.valueOf(totalWage)+ " pesos after "+ String.valueOf(inputHours)+ " Hours of work.");
+                    result.setText("Your Total Salary is "+ "₱" +String.valueOf(totalWage)+ "  after "+ String.valueOf(inputHours)+ " Hours of work.");
                     result2.setText(" ");
+
                 }
+
         }
+
     }
 }
